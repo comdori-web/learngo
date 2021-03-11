@@ -176,3 +176,30 @@ func canIDrink(age int) bool {
   }
 }
 ```
+
+## switch
+
+```go
+func canIDrink(age int) bool {
+  switch age {
+  case age < 18:
+    return false
+  case age == 18:
+    return true
+  case age > 50:
+    return false
+  }
+  return false
+}
+
+func canIDrink(age int) bool {
+  switch koreanAge := age + 2; koreanAge { // variable expression도 가능
+  case age < 18:
+    return false
+  case age == 18:
+    return true
+  }
+  return false
+}
+```
+
