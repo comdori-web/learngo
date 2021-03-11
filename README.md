@@ -238,6 +238,7 @@ func main() {
 ```go
 func main() {
   // map은 key와 value를 가짐
+  // 지정된 타입 외 다른 타입은 올 수 없음
   kyuha := map[string]string{"name": "kyuha", "age": "30"}
   fmt.Println(kyuha)
 
@@ -247,3 +248,26 @@ func main() {
 }
 ```
 
+## Structs
+
+```go
+type person struct {
+  name string
+  age int
+  favFood []string
+}
+func main() {
+  favFood := []string{"kimchi", "ramen"}
+  kyuha := person("kyuha", 30, favFood)
+  fmt.Println(kyuha)
+  fmt.Println(kyuha.name)
+
+  // 아래처럼도 작성 가능함.
+  kyuha := person(name:"kyuha", age:30, favFood: favFood)
+
+  // : 이후에 positional(?)이 올 수 없음
+  kyuha := person(name:"kyuha", 30, favFood) // 에러
+}
+```
+
+**channels와 go routine은 나중에 살펴볼 예정임**
