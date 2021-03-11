@@ -47,3 +47,14 @@ func main() {
 ```
 
 - 실행 : go run main.go
+
+## Packages and Imports
+
+- 위의 예제에서 fmt는 go가 가지고 있는 패키지 중 하나임
+- vscode에서는 저장시 패키지를 자동으로 import하거나 해제해줌
+- fmt
+  - formmatting을 위한 package
+  - 키포인트 : 왜 Println의 'P'는 대문자인가?
+    - func를 export하려면 대문자로 시작하면 됨. (public/private 개념)
+
+**cmd + click 하면 해당 패키지 내용을 볼 수 있음.**
