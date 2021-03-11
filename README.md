@@ -30,4 +30,20 @@ touch main.go
 
 - main.go 가 있는 폴더를 vscode로 열어서 vscode에서 설치하라는 것들을 모두 설치한다.
 
+## Main Package
 
+- 프로젝트를 컴파일 하길 원한다면 "main.go" 패키지이름을 사용해야만 함.
+  - 컴파일러가 main 이름을 가진 패키지를 찾고, main function을 찾아 실행시킴.
+- go에서는 어떤 패키지를 사용하는지 작성해주어야 함.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+  fmt.Pringln("Hello World!");
+}
+```
+
+- 실행 : go run main.go
