@@ -153,3 +153,26 @@ func main() {
   fmt.Println(total)
 }
 ```
+
+## If with a Twist
+
+```go
+func canIDrink(age int) bool {
+  if age < 18 {
+    return false
+  } else {
+    return true
+  }
+}
+
+// variable expression
+func canIDrink(age int) bool {
+  // if 조건문 전에 ;를 쓰면 왼쪽에 변수를 선언할 수 있음.
+  // 이것을 사용하면 koreanAge가 if문에서만 쓰인다는 것을 명시할 수 있다.
+  if koreanAge := age; koreanAge < 18 {
+    return false
+  } else {
+    return true
+  }
+}
+```
