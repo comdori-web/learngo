@@ -68,3 +68,58 @@ name := "kyuha" // 축약형, 함수 안에서만 다음과 같이 축약하여 
 ```
 
 - go는 type 언어이다.
+
+## Function
+
+```go
+// 기본 형태
+func add(a int, b int) int {
+  return a + b
+}
+
+// a, b가 같은 형태이면 아래와 같이 선언 가능
+func add(a, b int) int {
+  return a + b
+}
+
+// go는 multiple return value를 지원함.
+func lenAndUpper(name string) (int, string) {
+  return len(name), strings.ToUpper(name)
+}
+
+func main() {
+  totalLength, upperName := lenAndUpper("kyuha")
+  totalLength, _ := lenAndUpper("kyuha") // _를 쓰면 해당 값은 무시됨.
+}
+
+// 가변인자 : ...
+// TODO : 여기는 다시 한 번 찾아볼 필요가 있어보임!!
+func repeatMe(words ...string) {
+  fmt.Println(words)
+}
+
+func main() {
+  repeatMe("hwang", "kyu", "ha")
+}
+
+// naked return
+func lenAndUpper(name string) (length int, uppercase string) { // 리턴내용 작성
+  length = len(name) // :=이 아니라 =을 쓰는 이유는, 이미 length가 int로 선언되기 때문임.
+  uppercase = strings.ToUpper(name)
+  return // return을 따로 쓸 필요 없다.
+}
+
+func main() {
+  totalLength, upperName := lenAndUpper("kyuha")
+}
+
+// defer : 함수가 끝나고 무언가를 할 수 있는 기능
+// 파일을 닫거나 하는 등에 사용될 수 있음.
+func lenAndUpper(name string) (length int, uppercase string) {
+  defer fmt.Println("I'm done") // return 이후에 이 부분이 실행 됨.
+  length = len(name)
+  uppercase = strings.ToUpper(name)
+  return
+}
+```
+
