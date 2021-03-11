@@ -123,3 +123,33 @@ func lenAndUpper(name string) (length int, uppercase string) {
 }
 ```
 
+## for, range, ...args
+
+- for : go에는 반복이 for 만 있음.
+
+```go
+func superAdd(numbers ...int) int {
+  total := 0
+
+  fmt.Println(numbers)
+
+  for index, number := range numbers {
+    fmt.Println(index, number)
+  }
+
+  for i:=0; i< len(numbers) ; i++ {
+    fmt.Println(numbers[i])
+  }
+
+  for _, number := range numbers {
+    fmt.Println(number)
+  }
+  
+  return total
+}
+
+func main() {
+  total := superAdd(1, 2, 3, 4, 5, 6)
+  fmt.Println(total)
+}
+```
