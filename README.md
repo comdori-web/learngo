@@ -212,3 +212,23 @@ func main() {
   fmt.Println(*b) // 포인터에 *을 붙이면 해당 주소 참조
 }
 ```
+
+## Arrays and Slices
+
+```go
+func main() {
+  // array : 크기와 함께 선언, 크기가 제한 되어 있음...
+  names := [5]string{"hw", "an", "gk"}
+  names[3] = "yu"
+  names[4] = "ha"
+  // names[5] = "he" // out of bound
+  fmt.Println(names)
+}
+
+func main() {
+  // slice : 크기 없이 선언, 크기가 제한 없음
+  names := []string{"hw", "an", "gk"}
+  names = append(names, "yu") // go에서는 append를 하면 names가 바뀌는게 아니라 바뀐 슬라이스를 리턴함.
+  fmt.Println(names)
+}
+```
