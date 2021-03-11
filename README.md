@@ -203,3 +203,12 @@ func canIDrink(age int) bool {
 }
 ```
 
+## Pointers!
+
+```go
+func main() {
+  a := 2
+  b := &a // &를 붙이면 포인터임
+  fmt.Println(*b) // 포인터에 *을 붙이면 해당 주소 참조
+}
+```
