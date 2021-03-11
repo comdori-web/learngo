@@ -232,3 +232,18 @@ func main() {
   fmt.Println(names)
 }
 ```
+
+## Maps
+
+```go
+func main() {
+  // map은 key와 value를 가짐
+  kyuha := map[string]string{"name": "kyuha", "age": "30"}
+  fmt.Println(kyuha)
+
+  for key, value := range kyuha {
+    fmt.Println(key, value)
+  }
+}
+```
+
