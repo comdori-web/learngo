@@ -58,3 +58,13 @@ func main() {
     - func를 export하려면 대문자로 시작하면 됨. (public/private 개념)
 
 **cmd + click 하면 해당 패키지 내용을 볼 수 있음.**
+
+## Variables and Constants
+
+```go
+const name string = "kyuha" // 상수 : 변경 안됨.
+var name string = "kyuha" // 변수 : 변경 가능
+name := "kyuha" // 축약형, 함수 안에서만 다음과 같이 축약하여 선언 가능, 타입은 go가 찾아줌.
+```
+
+- go는 type 언어이다.
