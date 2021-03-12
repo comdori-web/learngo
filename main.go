@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/comdori-web/learngo/banking"
+)
 
 func main() {
-	fmt.Println("Hello World!")
+	account := banking.Account{Owner: "kyuha", Balance: 100}
+	fmt.Println(account)
 }
