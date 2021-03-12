@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/comdori-web/learngo/banking"
+	"github.com/comdori-web/learngo/accounts"
 )
 
 func main() {
-	account := banking.Account{Owner: "kyuha", Balance: 100}
+	account := accounts.NewAccount("kyuha")
 	fmt.Println(account)
 }
