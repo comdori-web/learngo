@@ -9,6 +9,10 @@ import (
 var errRequestFailed = errors.New("Request failed")
 
 func main() {
+	// map은 {}나 make 없이는 nil을 나타냄.
+	// results := map[string]string{} // emptymap 생성 방법1
+	results := make(map[string]string) // emptymap 생성 방법2
+
 	urls := []string{
 		"https://www.airbnb.com",
 		"https://www.google.com",
@@ -23,15 +27,25 @@ func main() {
 	}
 
 	for _, url := range urls {
-		fmt.Println("Checking:", url)
-		hitURL(url)
+		result := "OK"
+		fmt.Println("Checking : ", url)
+		err := hitURL(url)
+		if err != nil {
+			result = "FAILED"
+		}
+		results[url] = result
+	}
+
+	for url, result := range results {
+		fmt.Println(url, result)
 	}
 }
 
 func hitURL(url string) error {
 	// go lang standard library 검색!
 	resp, err := http.Get(url)
-	if err == nil || resp.StatusCode >= 400 {
+	if err != nil || resp.StatusCode >= 400 {
+		fmt.Println(err, resp.StatusCode)
 		return errRequestFailed
 	}
 
