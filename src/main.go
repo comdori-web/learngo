@@ -9,6 +9,13 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
+type extractedJob struct {
+	id       string
+	title    string
+	location string
+	salary   string
+}
+
 var baseURL string = "https://kr.indeed.com/jobs?q=python&start="
 
 func main() {
@@ -22,6 +29,27 @@ func main() {
 func getPage(page int) {
 	pageURL := baseURL + strconv.Itoa(page*50)
 	fmt.Println("Requesting", pageURL)
+	res, err := http.Get(pageURL)
+	checkErr(err)
+	checkCode(res)
+
+	defer res.Body.Close()
+
+	// err를 또 선언하는건가? 가능한 일인가?
+	doc, err := goquery.NewDocumentFromReader(res.Body)
+	checkErr(err)
+
+	searchCards := doc.Find(".jobsearch-SerpJobCard")
+	searchCards.Each(func(i int, card *goquery.Selection) {
+		id, _ := card.Attr("data-jk")
+		title := card.Find(".title>a").Text()
+		location := card.Find(".sjcl").Text()
+		fmt.Println(id, title, location)
+	})
+}
+
+func cleanString(str string) string {
+
 }
 
 func getPages() int {
