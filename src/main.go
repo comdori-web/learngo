@@ -24,13 +24,17 @@ var baseURL string = "https://kr.indeed.com/jobs?q=python&start="
 
 func main() {
 	var jobs []extractedJob
+	c := make(chan []extractedJob)
 	totalPages := getPages()
 	println(totalPages)
 	for i := 0; i < totalPages; i++ {
-		getPage(i)
-		extractedJobs := getPage(i)
-		jobs = append(jobs, extractedJobs...) // 이거 문법은 한 번 더 봐야할듯
-		// ...은 여기서 unpack의 의미로 쓰인듯.
+		go getPage(i, c)
+		//extractedJobs := getPage(i)
+	}
+
+	for i := 0; i < totalPages; i++ {
+		extractedJobs := <-c
+		jobs = append(jobs, extractedJobs...) // ...은 unpack의 의미로 쓰인듯
 	}
 
 	writeJobs(jobs)
@@ -57,7 +61,7 @@ func writeJobs(jobs []extractedJob) {
 	}
 }
 
-func getPage(page int) []extractedJob {
+func getPage(page int, mainC chan<- []extractedJob) {
 	var jobs []extractedJob
 	c := make(chan extractedJob)
 	pageURL := baseURL + strconv.Itoa(page*50)
@@ -82,7 +86,7 @@ func getPage(page int) []extractedJob {
 		jobs = append(jobs, job)
 	}
 
-	return jobs
+	mainC <- jobs
 }
 
 func extractJob(card *goquery.Selection, c chan<- extractedJob) {
